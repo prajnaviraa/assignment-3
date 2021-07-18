@@ -20,7 +20,6 @@ var (
 	windV  int
 	waterV int
 	stat   string
-	col    string
 )
 
 func inBetween(i, min, max int) bool {
@@ -47,15 +46,12 @@ func statusUpdate() {
 		if status.Water > 8 || status.Wind > 15 {
 			fmt.Printf("Status = BAHAYA \n\n")
 			stat = "BAHAYA"
-			col = "RED"
 		} else if inBetween(status.Water, 6, 8) || inBetween(status.Wind, 7, 15) {
 			fmt.Printf("Status = SIAGA \n\n")
 			stat = "SIAGA"
-			col = "YELLOW"
 		} else if status.Water <= 5 && status.Wind <= 6 {
 			fmt.Printf("Status = AMAN \n\n")
 			stat = "AMAN"
-			col = "GREEN"
 		}
 		time.Sleep(15 * time.Second)
 	}
@@ -68,7 +64,6 @@ func main() {
 			"Wind":   strconv.Itoa(windV),
 			"Water":  strconv.Itoa(waterV),
 			"Status": stat,
-			"Color":  col,
 		}
 		var t, err = template.ParseFiles("template.html")
 		if err != nil {
